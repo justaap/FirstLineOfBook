@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+}
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        //防止报错：The minCompileSdk (31) specified in a
+        //dependency's AAR metadata
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
+        }
+
+        applicationId "com.example.retrofittest"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures{
+        viewBinding true
+    }
+//    viewBinding {
+//        enabled = true
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //导入retrofit必要的依赖库，第一条依赖会自动将Retrofit、OkHttp和Okio几个库一起下载
+    implementation 'com.squareup.retrofit2:retrofit:2.6.4'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
+    implementation "androidx.core:core-ktx:+"
+    //noinspection GradleDependency
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //协程依赖库
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+
+//    添加flutter依赖
+//    implementation project(':flutter')
+}

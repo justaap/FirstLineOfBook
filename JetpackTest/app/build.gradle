@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    //不需要使用findViewById来获取控件
+    id 'kotlin-android-extensions'
+    //使用kapt引入Room的编译时注解库
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 29
+
+    defaultConfig {
+        applicationId "com.kd100.jetpacktest"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            /*只适配armeabi的APP可以跑在armeabi,x86,x86_64,armeabi-v7a,arm64-v8上
+            只适配armeabi-v7a可以运行在armeabi-v7a和arm64-v8a
+            只适配arm64-v8a 可以运行在arm64-v8a上*/
+            abiFilters  'arm64-v8a'
+            // Filter for architectures supported by Flutter.
+//            abiFilters  'armeabi-v7a','arm64-v8a', 'x86_64'
+
+
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        //手动集成flutter方式一.3
+        profile {
+            initWith debug
+            matchingFallbacks = ['debug', 'release']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //添加lifecycle的依赖
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    //添加Room的依赖库
+    implementation 'androidx.room:room-runtime:2.2.6'
+    kapt 'androidx.room:room-compiler:2.2.6'
+
+    //手动集成flutter方式一.2
+    debugImplementation 'com.example.jetpack_flutter:flutter_debug:1.0'
+    profileImplementation 'com.example.jetpack_flutter:flutter_profile:1.0'
+    releaseImplementation 'com.example.jetpack_flutter:flutter_release:1.0'
+}

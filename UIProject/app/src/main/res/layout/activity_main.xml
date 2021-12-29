@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--引入自定义布局-->
+<!--    <include layout="@layout/title" />-->
+    <com.example.uiproject.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:paddingRight="20sp"
+        android:layout_margin="5dp"
+        android:gravity="center|end"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:text="gravity=center|end" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:background="@color/black"
+        android:gravity="center"
+        android:textColor="#00ff00"
+        android:text="textColor=#00ff00" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/black"
+        android:textColor="#00ff00"
+        android:textSize="20sp"
+        android:text="@string/tv_show" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Button1" />
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:hint="Type something here"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--ImageView核心是src属性，定义图片源-->
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:src="@drawable/img_1" />
+
+    <!--设置不同样式的progressBar,设置最大值为100-->
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:visibility="visible"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:max="100"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="AlertDialog" />
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.activitytest">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ActivityTest">
+        <activity
+            android:name=".SecondActivity"
+            android:exported="true" >
+            <intent-filter>
+                <!--隐式Intent的使用，每个Intent只能指定一个action，但能指定多个category-->
+                <!--只有action和category内容同时匹配Intent中指定的内容，Activity才能响应Intent-->
+<!--                定义当前Activity可以响应的action（todo:内容随意?）-->
+                <action android:name="com.example.activitytest.ACTION_START" />
+<!--                category包含了附加信息，精确指明当前Activity能响应的Intent中可能带有的category-->
+                <category android:name="android.intent.category.DEFAULT" />
+<!--                隐式Intent可以有多个category，添加一个自定义的category-->
+                <category android:name="com.example.activitytest.MY_CATEGORY" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FirstActivity"
+            android:label="this is FirstActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

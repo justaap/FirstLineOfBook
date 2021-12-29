@@ -1,0 +1,19 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "RetrofitTest"
+include ':app'
+//setBinding(new Binding([gradle: this]))
+
+/*evaluate(new File(
+        settingsDir.parentFile,
+        'flutter_module/.android/include_flutter.groovy'
+))*/
+
+/*
+def includeFlutterFilePath = "\"E:\\OneDrive\\practice\\Android\\jetpack_flutter\\.android\\include_flutter.groovy"
+evaluate(new File(includeFlutterFilePath))*/
