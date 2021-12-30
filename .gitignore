@@ -19,7 +19,9 @@ out/
 
 # Gradle files
 .gradle/
-build/
+build/*
+# flutter arr maven
+!build/host/outputs/repo
 
 # Local configuration file (sdk path, etc)
 local.properties
