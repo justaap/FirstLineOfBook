@@ -17,10 +17,12 @@ class App extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: CustomWidget(),
-      //改用脚手架
       home: const Home(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        // primarySwatch: Color.fromRGBO(220, 220, 220, 1),
+        // highlightColor: Color.fromARGB(1, 0, 0, 0),
+        splashColor: Color.fromRGBO(1, 0, 0, 0),//消除MaterialApp的点击效果
       ),
       debugShowCheckedModeBanner: false,//是否显示右上角的debug图标
     );
@@ -32,10 +34,12 @@ class Home extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    //改用脚手架
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: const Text('Hello Flutter'),
-      ),
+        centerTitle: true,
+      ),*/
       // body: CustomWidget(),
       body: const BaseWidget(),
     );

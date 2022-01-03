@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// 展示Container、Column、Row、Stack、Icon的使用：
+/// 展示Container、Column、Row、Stack、Icon、Expanded、AspectRatio的使用：
 /// container的alignment属性；
 /// column和row的MainAxisAlignment、CrossAxisAlignment属性；
 /// stack的alignment属性,配合positioned类使用；
+/// Expanded的flex属性，一般在Row和Column中使用；
+/// AspectRatio的aspectRatio属性，一般在container中使用；
 
 class LayouDemo extends StatelessWidget{
   const LayouDemo({Key? key}) : super(key: key);
@@ -31,11 +33,13 @@ class LayouDemo extends StatelessWidget{
                 child:  Icon(Icons.ac_unit,size: 100,),
                 color: Colors.yellow,
               ),
-              //Positioned设置top、left、right的margin属性，约束内容显示（相对于stack的最大控件）
+              //Positioned设置top、left、right的margin属性，约束内容显示（相对于stack中的最大控件）
+              //左右或上下同时限制时，不可设置width或height属性，会报错
               Positioned(
                 top: 20,
                 left: 20,
                 right: 20,
+                // width: 50,
                 child: Container(
                   child:  Icon(Icons.add,size: 50,),
                   color: Colors.red,
@@ -47,12 +51,50 @@ class LayouDemo extends StatelessWidget{
           Row(//Row为横向布局
             //row和column的特有属性：主轴对齐方式，默认children沿着开始方向，此处为平均分配剩下空间
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              Icon(Icons.add,size: 50,),//图标icon使用
-              Icon(Icons.ac_unit,size: 60,),
-              Icon(Icons.access_alarm,size: 60,),
+            children: [
+              Container(
+                child: Icon(Icons.add,size: 60,color: Colors.blue,),
+                color: Colors.red,
+              ),//图标icon使用
+              Container(
+                child: Icon(Icons.ac_unit,size: 60,),
+                color: Colors.green,
+              ),//图标icon使用
+              Container(
+                child: Icon(Icons.access_alarm,size: 60,),
+                color: Colors.blue,
+              ),//图标icon使用
             ],
           ),
+
+          //Expanded示例，在row或column中，填充对应的主轴方向内容，宽高度属性不再生效
+          //mainAxisAlignment属性也无效，
+          //flex相当于weiht属性，设置占比
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                  flex: 2,
+                  child:Container(
+                    child: Icon(Icons.add,size: 60,color: Colors.blue,),
+                    color: Colors.red,
+                  )),//图标icon使用
+              Expanded(
+                  flex: 2,
+                  child:Container(
+                    child: Icon(Icons.ac_unit,size: 60,),
+                    color: Colors.green,
+                  )),//图标icon使用
+              Expanded(
+                  flex: 1,
+                  child:Container(
+                    child: Icon(Icons.access_alarm,size: 60,),
+                    color: Colors.blue,
+                  )),//图标icon使用
+            ],
+          ),
+
+          //crossAxisAlignment属性示例
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,//各间隔一致
 
@@ -80,6 +122,19 @@ class LayouDemo extends StatelessWidget{
                 height: 60,
               ),
             ],
+          ),
+
+          //AspectRatio:aspectRatio属性意为宽高比为2，
+          //设置父container高为100，则子视图宽为200
+          Container(
+            color: Colors.red,
+            height: 100,
+            child: (
+                AspectRatio(
+                  aspectRatio: 2,
+                  child: Icon(Icons.add,size: 100,),
+                )
+            ),
           )
         ],
       )
