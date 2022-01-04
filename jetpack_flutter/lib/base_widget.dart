@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:jetpack_flutter/layout_demo.dart';
-import 'package:jetpack_flutter/my_app.dart';
-import 'package:jetpack_flutter/rich_text.dart';
-import 'package:jetpack_flutter/stateful_demo.dart';
-import 'package:jetpack_flutter/wechat_demo/wechat_demo.dart';
+import '../../layout_demo.dart';
+import '../../my_app.dart';
+import '../../rich_text.dart';
+import '../../stateful_demo.dart';
+import '../../wechat_demo/wechat_demo.dart';
 
 import 'list_view_demo.dart';
 

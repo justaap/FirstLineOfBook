@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jetpack_flutter/wechat_demo/chat_page.dart';
-import 'package:jetpack_flutter/wechat_demo/contacts_page.dart';
-import 'package:jetpack_flutter/wechat_demo/discover_page.dart';
-import 'package:jetpack_flutter/wechat_demo/mine_page.dart';
+import '../../wechat_demo/chat/chat_page.dart';
+import '../../wechat_demo/contacts_page.dart';
+import '../../wechat_demo/discover_page.dart';
+import '../../wechat_demo/mine_page.dart';
 
 
 ///仿微信UI

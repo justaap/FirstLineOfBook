@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jetpack_flutter/base_widget.dart';
-import 'package:jetpack_flutter/car.dart';
+import '../../base_widget.dart';
 
 import 'list_view_demo.dart';
 import 'my_app.dart';
