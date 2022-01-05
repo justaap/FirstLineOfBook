@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../layout_demo.dart';
 import '../../wechat_demo/chat/chat_item.dart';
 import '../../wechat_demo/discover_page.dart';
 
 import '../../main.dart';
-/// PopupMenuButton的使用,网络请求
-///
-///
+/// PopupMenuButton的使用
+/// 网络请求：在initState发起请求、解析数据，2种更新UI：1.FutureBuilder；2.使用async回调then
+/// 保持Widget的状态一：1。AutomaticKeepAliveClientMixin；2.bool get wantKeepAlive => true; 3.super.initState();4.父页面body用Indexedstack
+/// 保持Widget的状态二：
 class ChatPage extends StatefulWidget{
 
   @override
@@ -19,13 +19,33 @@ class ChatPage extends StatefulWidget{
   }
 }
 
-class _ChatPageState extends State<ChatPage>{
+class _ChatPageState extends State<ChatPage> {
+/*class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin{
 
+  @override
+  bool get wantKeepAlive => true;*/
+
+  List<ChatItem> _chatList = [];
+  bool _cancelConnect = false;
   //网络请求发送一般写在initState中
   @override
   void initState() {
     super.initState();
-    getData();
+    //通过then实现回调
+    getData().then((value) => {
+      if(!_cancelConnect){
+        setState((){
+          _chatList = value!;
+        })
+      }
+    }).catchError((onError){
+      print(onError);
+    }).whenComplete(
+            () => print("完成")
+    ).timeout(Duration(milliseconds: 1000)).catchError((onError){
+      _cancelConnect = true;//超时取消刷新
+      print("timeoutError: ${onError}");
+    });
     print("请求");
   }
 
@@ -40,6 +60,7 @@ class _ChatPageState extends State<ChatPage>{
   /// }
   //发起请求
   Future<List<ChatItem>?> getData() async{
+    _cancelConnect = false;
     var response = await http.get(Uri.parse("http://rap2api.taobao.org/app/mock/data/2178507"));
     print("response.body is ${response.body}");
 
@@ -59,6 +80,7 @@ class _ChatPageState extends State<ChatPage>{
 
   @override
   Widget build(BuildContext context) {
+    // super.build(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(220, 220, 220, 1),
@@ -70,48 +92,7 @@ class _ChatPageState extends State<ChatPage>{
         ),
         centerTitle: true,
         actions: [
-          Container(
-            margin: EdgeInsets.only(right: 10),//右边margin10
-            child: PopupMenuButton(
-              color: Colors.red,
-              onSelected: (item){
-                print("item is $item"); //此处的item与PopupMenuItem的value对应，value为空此处无效
-              },
-              onCanceled: (){
-                print("onCanceled");//
-              },
-              offset: Offset(-20,50),//偏移：左20、下50
-              // child: Image(image: AssetImage('images/圆加.png'),),//加载本地图片文件
-              child: Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
-              itemBuilder: (BuildContext context) {
-                return <PopupMenuItem>[
-                  PopupMenuItem(
-                      value: {"imageName":" name","title":"tit"},
-                      onTap: (){
-                        print("item1 tap");
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (BuildContext context){
-                            return DiscoverPage();
-                          })
-                        );
-                      },
-                      child: Row(children: [
-                        Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
-                        SizedBox(width: 20),
-                        Text("layoutDemo",style: TextStyle(color: Colors.white),),
-                      ],)
-                  ),
-                  PopupMenuItem(
-                      value: Text("第二行值"),
-                      child: Row(children: [
-                        Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
-                        Text("第二行")
-                      ],)
-                  ),
-                ];
-              },
-            ),
-          ),
+          _container()
         ],
       ),
       //网络请求中，使用FutureBuilder更新UI
@@ -141,6 +122,77 @@ class _ChatPageState extends State<ChatPage>{
           }
         },
       ),
+
+      //不使用FutureBuilder更新UI
+      /*body: Container(
+        child: _chatList.length == 0
+            ?Center(child: CircularProgressIndicator(),)
+            :ListView.builder(
+              itemCount:_chatList.length,
+              itemBuilder:(BuildContext context,int index){
+                return ListTile(
+                  leading: CircleAvatar(backgroundImage: NetworkImage(_chatList[index].imageUrl),),
+                  title: Text(_chatList[index].name),
+                  subtitle: Text(_chatList[index].message,overflow: TextOverflow.ellipsis,),
+                );
+              },
+          )
+      ),*/
+
     );
   }
+
+  //右上角使用popupMenuButton
+  Container _container(){
+    return Container(
+      margin: EdgeInsets.only(right: 10),//右边margin10
+      child: PopupMenuButton(
+        color: Colors.grey,
+        onSelected: (item){
+          print("item is $item"); //此处的item与PopupMenuItem的value对应，value为空此处无效
+        },
+        onCanceled: (){
+          print("onCanceled");//
+        },
+        offset: Offset(-20,50),//偏移：左20、下50
+        child: Image(
+          image: AssetImage('images/badge.png'),
+          width: 25,
+          height: 25,
+        ),//加载本地图片文件
+        // child: Icon(Icons.add,size: 35, color: Colors.black54,),
+        itemBuilder: (BuildContext context) {
+          return <PopupMenuItem>[
+            PopupMenuItem(
+                value: {"imageName":" name","title":"tit"},
+                onTap: (){
+                  print("item1 tap");
+                  /*Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context){
+                        return DiscoverPage();
+                      })
+                  );*/
+                },
+                child: Row(children: [
+                  Image(image: AssetImage('images/icon_friends_add.png'),width: 25,),
+                  // Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
+                  SizedBox(width: 20),
+                  Text("layoutDemo",style: TextStyle(color: Colors.white),),
+                ],)
+            ),
+            PopupMenuItem(
+                value: Text("第二行值"),
+                child: Row(children: [
+                  Image(image: AssetImage('images/添加朋友.png'),width: 25,),
+                  // Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
+                  SizedBox(width: 20),
+                  Text("layoutDemo",style: TextStyle(color: Colors.white),),
+                ],)
+            ),
+          ];
+        },
+      ),
+    );
+  }
+
 }
