@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../wechat_demo/chat/chat_page.dart';
 import '../../wechat_demo/contacts_page.dart';
 import '../../wechat_demo/discover_page.dart';
-import '../../wechat_demo/mine_page.dart';
+import 'mine/mine_page.dart';
 
 
 ///仿微信UI
@@ -11,6 +11,8 @@ import '../../wechat_demo/mine_page.dart';
 ///
 
 class WechatDemo extends StatefulWidget{
+  const WechatDemo({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _WechatDemoState();
@@ -19,9 +21,8 @@ class WechatDemo extends StatefulWidget{
 
 class _WechatDemoState extends State<WechatDemo>  {
 
-  final _pageController = PageController(initialPage: 0);
-
-  var _currentIndex = 0;
+  int _currentIndex = 3;
+  final _pageController = PageController(initialPage: 3);
 
   //初始化页面缓存
   final List<Widget> _pages=[
@@ -47,8 +48,8 @@ class _WechatDemoState extends State<WechatDemo>  {
         controller: _pageController,
         children:_pages,
         onPageChanged: ((index){
+          _currentIndex = index;//滑动page时底部也更新
           setState(() {
-            _currentIndex = index;//滑动page时底部也更新
           });
         }),
         // physics: NeverScrollableScrollPhysics(),//取消左右滑动效果
@@ -59,10 +60,26 @@ class _WechatDemoState extends State<WechatDemo>  {
         fixedColor: Colors.green,
         backgroundColor: Colors.white,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.chat),label: "微信"),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark),label: "通讯录"),
-          BottomNavigationBarItem(icon: Icon(Icons.history),label: "发现"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline),label: "我"),
+          BottomNavigationBarItem(
+              label: "微信",
+              icon: Image(image: AssetImage("images/tabbar_chat.png"),width: 20,height: 20,),
+              activeIcon: Image(image: AssetImage("images/tabbar_chat_hl.png"),width: 20,height: 20,)
+          ),
+          BottomNavigationBarItem(
+              label: "通讯录",
+              icon: Image(image: AssetImage("images/tabbar_friends.png"),width: 20,height: 20,),
+              activeIcon: Image(image: AssetImage("images/tabbar_friends_hl.png"),width: 20,height: 20,),
+          ),
+          BottomNavigationBarItem(
+              label: "发现",
+              icon: Image(image: AssetImage("images/tabbar_discover.png"),width: 20,height: 20,),
+              activeIcon: Image(image: AssetImage("images/tabbar_discover_hl.png"),width: 20,height: 20,),
+          ),
+          BottomNavigationBarItem(
+              label: "我",
+              icon: Image(image: AssetImage("images/tabbar_mine.png"),width: 20,height: 20,),
+              activeIcon: Image(image: AssetImage("images/tabbar_mine_hl.png"),width: 20,height: 20,),
+          ),
         ],
         selectedFontSize: 12,//设置选中大小与unselectedFontSize默认值一样为12，取消选中变大效果
         unselectedFontSize: 12 ,
