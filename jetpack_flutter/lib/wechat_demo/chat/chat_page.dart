@@ -155,8 +155,8 @@ class _ChatPageState extends State<ChatPage> {
           print("onCanceled");//
         },
         offset: Offset(-20,50),//偏移：左20、下50
-        child: Image(
-          image: AssetImage('images/badge.png'),
+        child: const Image(
+          image: AssetImage('assets/images/圆加.png'),
           width: 25,
           height: 25,
         ),//加载本地图片文件
@@ -173,8 +173,8 @@ class _ChatPageState extends State<ChatPage> {
                       })
                   );*/
                 },
-                child: Row(children: [
-                  Image(image: AssetImage('images/icon_friends_add.png'),width: 25,),
+                child: Row(children: const [
+                  Image(image: AssetImage('assets/images/发起群聊.png'),width: 25,),
                   // Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
                   SizedBox(width: 20),
                   Text("layoutDemo",style: TextStyle(color: Colors.white),),
@@ -182,8 +182,8 @@ class _ChatPageState extends State<ChatPage> {
             ),
             PopupMenuItem(
                 value: Text("第二行值"),
-                child: Row(children: [
-                  Image(image: AssetImage('images/添加朋友.png'),width: 25,),
+                child: Row(children: const [
+                  Image(image: AssetImage('assets/images/添加朋友.png'),width: 25,),
                   // Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
                   SizedBox(width: 20),
                   Text("layoutDemo",style: TextStyle(color: Colors.white),),
