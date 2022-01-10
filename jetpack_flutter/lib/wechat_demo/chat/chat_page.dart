@@ -10,7 +10,8 @@ import '../../main.dart';
 /// PopupMenuButton的使用
 /// 网络请求：在initState发起请求、解析数据，2种更新UI：1.FutureBuilder；2.使用async回调then
 /// 保持Widget的状态一：1。AutomaticKeepAliveClientMixin；2.bool get wantKeepAlive => true; 3.super.initState();4.父页面body用Indexedstack
-/// 保持Widget的状态二：
+/// 保持Widget的状态二：使用pageView(见wechat_demo.dart)
+
 class ChatPage extends StatefulWidget{
 
   @override
@@ -123,7 +124,7 @@ class _ChatPageState extends State<ChatPage> {
         },
       ),
 
-      //不使用FutureBuilder更新UI
+      //网络请求中，不使用FutureBuilder更新UI
       /*body: Container(
         child: _chatList.length == 0
             ?Center(child: CircularProgressIndicator(),)
@@ -155,8 +156,8 @@ class _ChatPageState extends State<ChatPage> {
           print("onCanceled");//
         },
         offset: Offset(-20,50),//偏移：左20、下50
-        child: const Image(
-          image: AssetImage('assets/images/圆加.png'),
+        child: Image(
+          image: AssetImage('images/圆加.png'),
           width: 25,
           height: 25,
         ),//加载本地图片文件
@@ -173,8 +174,8 @@ class _ChatPageState extends State<ChatPage> {
                       })
                   );*/
                 },
-                child: Row(children: const [
-                  Image(image: AssetImage('assets/images/发起群聊.png'),width: 25,),
+                child: Row(children: [
+                  Image(image: AssetImage('images/发起群聊.png'),width: 25,),
                   // Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
                   SizedBox(width: 20),
                   Text("layoutDemo",style: TextStyle(color: Colors.white),),
@@ -182,8 +183,8 @@ class _ChatPageState extends State<ChatPage> {
             ),
             PopupMenuItem(
                 value: Text("第二行值"),
-                child: Row(children: const [
-                  Image(image: AssetImage('assets/images/添加朋友.png'),width: 25,),
+                child: Row(children: [
+                  Image(image: AssetImage('images/添加朋友.png'),width: 25,),
                   // Icon(Icons.add_rounded,size: 35, color: Colors.black54,),
                   SizedBox(width: 20),
                   Text("layoutDemo",style: TextStyle(color: Colors.white),),

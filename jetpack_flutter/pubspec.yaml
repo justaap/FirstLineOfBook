@@ -44,16 +44,58 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add Flutter specific assets to your application, add an assets section,
-  # like this:
+  # To add Flutter specific assets to your application, add an assets section, like this:
   assets:
-    - assets/images/圆加.png
-    - assets/images/badge.png
-    - assets/images/icon_friends_add.png
-    - assets/images/添加朋友.png
-    - assets/images/发起群聊.png
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+    - images/badge.png
+    - images/franky.jpg
+    - images/Hank.png
+    - images/icon_friends_add.png
+    - images/icon_right.png
+    - images/tabbar_chat.png
+    - images/tabbar_chat_hl.png
+    - images/tabbar_discover.png
+    - images/tabbar_discover_hl.png
+    - images/tabbar_friends.png
+    - images/tabbar_friends_hl.png
+    - images/tabbar_mine.png
+    - images/tabbar_mine_hl.png
+    - images/五角星b.png
+    - images/五角星w.png
+    - images/公众号.png
+    - images/发起群聊.png
+    - images/圆加.png
+    - images/小程序.png
+    - images/微信 支付.png
+    - images/微信卡包.png
+    - images/微信收藏.png
+    - images/微信相册.png
+    - images/微信表情.png
+    - images/微信设置.png
+    - images/扫一扫.png
+    - images/扫一扫1.png
+    - images/扫一扫2.png
+    - images/搜一搜.png
+    - images/搜一搜2.png
+    - images/搜一搜2.png
+    - images/摇一摇.png
+    - images/收付款.png
+    - images/放大镜b.png
+    - images/放大镜w.png
+    - images/新的朋友.png
+    - images/朋友圈.png
+    - images/标星.png
+    - images/标签.png
+    - images/气泡.png
+    - images/添加朋友.png
+    - images/游戏.png
+    - images/游戏2.png
+    - images/相机.png
+    - images/看一看icon.png
+    - images/群聊.png
+    - images/购物.png
+    - images/附近的人icon.png
+#    - images/a_dot_burr.jpeg
+#    - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
