@@ -1,4 +1,4 @@
-package com.justap.FLOC
+package com.justap.floc
 
 import org.junit.Test
 
