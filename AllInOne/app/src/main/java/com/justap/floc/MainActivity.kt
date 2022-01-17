@@ -1,9 +1,11 @@
 package com.justap.floc
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.justap.floc.brocastRcver.BroadcastMainAct
 import floc.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,19 +18,21 @@ class MainActivity : AppCompatActivity() {
 
         val entryList = mutableListOf<EntryItem>()
         initList(entryList)
-        val layoutManager = GridLayoutManager(this,4)
+        val layoutManager = GridLayoutManager(this,3)
         rv_menu.layoutManager = layoutManager
         rv_menu.adapter = MenuAdapter(entryList)
 }
 
     private fun initList(entryList: MutableList<EntryItem>) {
-        entryList.add(EntryItem("测试", R.drawable.star_empty_grey) {
-            Toast.makeText(this,"测试",Toast.LENGTH_SHORT).show()
+        entryList.add(EntryItem("广播\nBroadcast", R.drawable.star_empty_grey) {
+            startActivity(Intent(this, BroadcastMainAct::class.java))
         })
 
-        entryList.add(EntryItem("测试2", R.drawable.star_empty_grey) {
-//            Toast.makeText(this,"测试2",Toast.LENGTH_SHORT).show()
-        })
+        for(i in 1..30){
+            entryList.add(EntryItem("测试$i", R.drawable.star_empty_grey) {
+                Toast.makeText(this,"测试$i",Toast.LENGTH_SHORT).show()
+            })
+        }
     }
 
 }
