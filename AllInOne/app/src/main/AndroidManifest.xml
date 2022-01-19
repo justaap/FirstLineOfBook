@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="floc">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,9 +23,39 @@
 
         <activity
             android:name="com.justap.floc.brocastRcver.BroadcastMainAct"
-            android:exported="true"
+            android:exported="true" />
 
-            />
+        <!--静态注册：接收开机广播-->
+        <receiver
+            android:name="com.justap.floc.brocastRcver.BootCompleteRcver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!--注册自定义标准广播-->
+        <receiver
+            android:name="com.justap.floc.brocastRcver.MyBrocastRcver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.justap.floc.brocastRcver.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+
+
+        <!--注册自定义有序广播，设定优先级-->
+        <receiver
+            android:name="com.justap.floc.brocastRcver.MyOrderedBrocastRcver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="100">
+                <action android:name="com.justap.floc.brocastRcver.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
