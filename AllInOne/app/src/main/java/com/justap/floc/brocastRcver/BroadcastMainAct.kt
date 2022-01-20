@@ -84,9 +84,9 @@ class BroadcastMainAct : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        //退出页面时注销，否则一直监听并响应
+    override fun onPause() {
+        super.onPause()
+        //页面不在栈顶时注销，否则一直监听并响应，
         unregisterReceiver(timeChangeRcv)
     }
 }

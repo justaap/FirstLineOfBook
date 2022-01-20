@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jetpack_flutter/my_app.dart';
 
 import 'package:my_flutter_module/my_app.dart';
 

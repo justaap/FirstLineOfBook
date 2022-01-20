@@ -1,24 +1,26 @@
-dependencyResolutionManagement {
+/*dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
         //手动集成flutter方式一.1
-        String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+        *//*String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
         maven {
-            url 'F://practice/Android/jetpack_flutter/build/host/outputs/repo'
-//            url 'E://FirstLineOfBook/jetpack_flutter/build/host/outputs/repo'
+//            url 'F://practice/Android/jetpack_flutter/build/host/outputs/repo'
+            url 'E://FirstLineOfBook/jetpack_flutter/build/host/outputs/repo'
         }
         maven {
             url "$storageUrl/download.flutter.io"
-        }
+        }*//*
+
     }
-}
-rootProject.name = "JetpackTest"
+}*/
+//手动集成flutter方式二.1
 include ':app'
-/*setBinding(new Binding([gradle:this]))
+rootProject.name = "JetpackTest"
+setBinding(new Binding([gradle:this]))
 evaluate(new File(
         settingsDir.parentFile,
-        'jetpack_flutter/.android/include_flutter.groovy'
-))*/
+        './jetpack_flutter/.android/include_flutter.groovy'
+))
