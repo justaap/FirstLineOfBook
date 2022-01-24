@@ -2,7 +2,6 @@ package com.justap.floc.persistenceStorage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.edit
 import floc.databinding.ActivityMainPersistenceBinding
 
 class MainPersistenceActivity : AppCompatActivity() {

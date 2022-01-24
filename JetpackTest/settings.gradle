@@ -1,21 +1,23 @@
-/*dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
         //手动集成flutter方式一.1
-        *//*String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+        String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
         maven {
 //            url 'F://practice/Android/jetpack_flutter/build/host/outputs/repo'
             url 'E://FirstLineOfBook/jetpack_flutter/build/host/outputs/repo'
         }
         maven {
             url "$storageUrl/download.flutter.io"
-        }*//*
+        }
 
     }
-}*/
+}
 //手动集成flutter方式二.1
 include ':app'
 rootProject.name = "JetpackTest"

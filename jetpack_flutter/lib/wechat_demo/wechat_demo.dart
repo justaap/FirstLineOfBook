@@ -76,7 +76,7 @@ class _WechatDemoState extends State<WechatDemo>  {
               activeIcon: Image(image: AssetImage("images/tabbar_discover_hl.png"),width: 20,height: 20,),
           ),
           BottomNavigationBarItem(
-              label: "我",
+              label: "我的",
               icon: Image(image: AssetImage("images/tabbar_mine.png"),width: 20,height: 20,),
               activeIcon: Image(image: AssetImage("images/tabbar_mine_hl.png"),width: 20,height: 20,),
           ),
