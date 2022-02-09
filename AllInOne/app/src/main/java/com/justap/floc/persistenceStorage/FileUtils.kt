@@ -22,7 +22,6 @@ class FileUtils {
                 e.printStackTrace()
             }
         }
-
         //获取data/data/包名/files目录下的文件内容
         @JvmStatic
         fun getFile(context: Context, fileName: String):String {
