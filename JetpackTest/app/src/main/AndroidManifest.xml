@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackTest">
         <activity
+            android:name=".ContentProviderAccesserActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,11 +23,10 @@
         </activity>
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:theme="@style/Theme.AppCompat.DayNight"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

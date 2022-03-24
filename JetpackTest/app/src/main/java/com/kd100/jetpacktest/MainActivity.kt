@@ -1,6 +1,7 @@
 package com.kd100.jetpacktest
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.kd100.jetpacktest.RoomTest.AppDatabase
 import com.kd100.jetpacktest.RoomTest.Book
 import com.kd100.jetpacktest.RoomTest.UserEntity
+import com.kd100.jetpacktest.databinding.ActivityMainBinding
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -21,9 +23,11 @@ import kotlin.concurrent.thread
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainViewModel
     lateinit var sp: SharedPreferences
+    private lateinit var vBinding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        vBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(vBinding.root)
 
 //        Lifecycle.2.通过LifecycleOwner的getLifecycle()获取Lifecycle对象，
 //        然后添加观察对象（Activity本身就是一个LifecycleOwner）
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             tv_info_text.text = it.toString()
         })
 
-        btn_plus.setOnClickListener {
+        vBinding.btnPlus.setOnClickListener {
 //            viewModel.counter++
 //            refrashCounter()
             viewModel.plusone()
@@ -156,7 +160,9 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initListen() {
-
+        vBinding.btnContentproviderAccesser.setOnClickListener {
+            startActivity(Intent(this,ContentProviderAccesserActivity::class.java))
+        }
     }
 
     private fun refrashCounter() {

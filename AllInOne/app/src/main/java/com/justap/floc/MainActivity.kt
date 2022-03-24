@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.justap.floc.brocastRcver.BroadcastMainAct
+import com.justap.floc.contentProvider.ContentProviderActivity
 import com.justap.floc.persistenceStorage.MainPersistenceActivity
 import floc.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,10 @@ class MainActivity : AppCompatActivity() {
 }
 
     private fun initList(entryList: MutableList<EntryItem>) {
+
+        entryList.add(EntryItem("ContentProvider",R.drawable.star_empty_black){
+            startActivity(Intent(this,ContentProviderActivity::class.java))
+        })
 
         entryList.add(EntryItem("持久化技术", R.drawable.star_empty_grey) {
             startActivity(Intent(this, MainPersistenceActivity::class.java))
