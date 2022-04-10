@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    tools:context="com.justap.floc.serviceAndThread.ThreadTestActivity">
+
+   <Button
+       android:id="@+id/btn_change"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textAllCaps="false"
+       android:text="通过子线程中的Handler更新text" />
+
+   <TextView
+       android:id="@+id/tv_show"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:text="show" />
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:id="@+id/btn_start_service"
+       android:textAllCaps="false"
+       android:text="startService" />
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/btn_stop_service"
+       android:textAllCaps="false"
+       android:text="stopService" />
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/btn_bind_service"
+       android:textAllCaps="false"
+       android:text="bindService" />
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/btn_unbind_service"
+       android:textAllCaps="false"
+       android:text="unbindService" />
+
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:id="@+id/btn_start_intent_service"
+       android:textAllCaps="false"
+       android:text="startIntentService" />
+
+</LinearLayout>

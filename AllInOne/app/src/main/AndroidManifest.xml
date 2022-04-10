@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--   前台service权限声明-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="false"
@@ -34,6 +36,10 @@
 
         <activity
             android:name="com.justap.floc.contentProvider.ContentProviderActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.justap.floc.serviceAndThread.ThreadTestActivity"
             android:exported="true" />
 
         <!--静态注册：接收开机广播-->
@@ -67,11 +73,21 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name="com.justap.floc.serviceAndThread.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name="com.justap.floc.serviceAndThread.MyIntentService"
+            android:enabled="true"
+            android:exported="true" />
+
         <provider
             android:name="com.justap.floc.contentProvider.DatabaseProvider"
             android:authorities="com.justap.floc.provider"
-            android:exported="true"
-            android:enabled="true" />
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
